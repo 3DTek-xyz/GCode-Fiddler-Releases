@@ -24,6 +24,8 @@ GCode-Fiddler is a professional-grade tool for optimizing CNC machining operatio
 [![Linux CLI](https://img.shields.io/badge/Linux-CLI-yellow?style=for-the-badge&logo=linux&logoColor=black)](https://github.com/3DTek-xyz/GCode-Fiddler-Releases/releases/latest/download/GCodeFiddler-CLI-Linux)
 
 > 💡 **These links automatically download the latest version** - no need to browse releases!
+> 
+> 📋 **Need an older version?** Browse all releases: [All Versions](https://github.com/3DTek-xyz/GCode-Fiddler-Releases/releases)
 
 ### GUI Version (Recommended for most users)
 1. **Download** the appropriate executable for your platform:
@@ -166,18 +168,28 @@ Optimization Results:
   New average feed rate: 2100.00 mm/min
 ```
 
-## ⚙️ Supported G-code Commands
+## ⚙️ G-code Compatibility
 
-- **G0/G1**: Linear movement commands (rapid/linear interpolation)
-- **G2/G3**: Circular interpolation
-- **G17/G18/G19**: Plane selection
-- **G20/G21**: Units (inches/millimeters)
-- **G28/G30**: Home position
-- **G54-G59**: Work coordinate systems
-- **G90/G91**: Absolute/incremental positioning
-- **M commands**: Machine commands (heating, cooling, etc.)
-- **Tool changes**: T commands for multi-tool setups
-- **Comments**: Preserves comments and file structure
+**GCode-Fiddler supports ALL standard G-code commands** - we intelligently optimize what we understand and safely pass through everything else.
+
+### Commands We Actively Optimize:
+- **G0/G1**: Linear movement commands (rapid/linear interpolation) - *feed rate optimization*
+- **G2/G3**: Circular interpolation - *arc-aware corner smoothing*
+- **Tool paths**: Multi-tool operations - *tool-specific optimization*
+
+### Commands We Preserve & Pass-Through:
+- **All G-codes**: G17/G18/G19 (plane selection), G20/G21 (units), G28/G30 (homing), G54-G59 (work coordinates), G90/G91 (positioning modes), and many more
+- **M commands**: Machine commands (spindle control, coolant, tool changes, custom macros, etc.)
+- **T commands**: Tool selection and changes
+- **Comments & Formatting**: Preserves original file structure and documentation
+- **Custom Commands**: Machine-specific or non-standard commands pass through unchanged
+
+### Safety Philosophy:
+✅ **If we don't recognize it, we preserve it exactly** - no guessing or modification
+<br>
+✅ **Only optimize movement commands we fully understand**
+<br>
+✅ **Maintain 100% compatibility with your CNC controller**
 
 ## 🔒 Safety & Best Practices
 
