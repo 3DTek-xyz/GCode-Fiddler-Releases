@@ -9,13 +9,27 @@ GCode-Fiddler is a professional-grade tool for optimizing CNC machining operatio
 [![Latest Release](https://img.shields.io/github/v/release/3DTek-xyz/GCode-Fiddler-Releases?label=Latest%20Release)](https://github.com/3DTek-xyz/GCode-Fiddler-Releases/releases/latest)
 [![Downloads](https://img.shields.io/github/downloads/3DTek-xyz/GCode-Fiddler-Releases/total)](https://github.com/3DTek-xyz/GCode-Fiddler-Releases/releases)
 
-**[➤ Download Latest Release](https://github.com/3DTek-xyz/GCode-Fiddler-Releases/releases/latest)**
+### 📥 Direct Downloads (Always Latest Version)
+
+**GUI Version (Recommended)**
+<br>
+[![Windows GUI](https://img.shields.io/badge/Windows-GUI-blue?style=for-the-badge&logo=windows)](https://github.com/3DTek-xyz/GCode-Fiddler-Releases/releases/latest/download/GCodeFiddler-GUI-Windows.exe)
+[![macOS GUI](https://img.shields.io/badge/macOS-GUI-black?style=for-the-badge&logo=apple)](https://github.com/3DTek-xyz/GCode-Fiddler-Releases/releases/latest/download/GCodeFiddler-GUI-macOS.zip)
+[![Linux GUI](https://img.shields.io/badge/Linux-GUI-orange?style=for-the-badge&logo=linux)](https://github.com/3DTek-xyz/GCode-Fiddler-Releases/releases/latest/download/GCodeFiddler-GUI-Linux)
+
+**Command Line Interface**
+<br>
+[![Windows CLI](https://img.shields.io/badge/Windows-CLI-lightblue?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/3DTek-xyz/GCode-Fiddler-Releases/releases/latest/download/GCodeFiddler-CLI-Windows.exe)
+[![macOS CLI](https://img.shields.io/badge/macOS-CLI-gray?style=for-the-badge&logo=apple&logoColor=white)](https://github.com/3DTek-xyz/GCode-Fiddler-Releases/releases/latest/download/GCodeFiddler-CLI-macOS)
+[![Linux CLI](https://img.shields.io/badge/Linux-CLI-yellow?style=for-the-badge&logo=linux&logoColor=black)](https://github.com/3DTek-xyz/GCode-Fiddler-Releases/releases/latest/download/GCodeFiddler-CLI-Linux)
+
+> 💡 **These links automatically download the latest version** - no need to browse releases!
 
 ### GUI Version (Recommended for most users)
 1. **Download** the appropriate executable for your platform:
-   - **Windows**: `GCodeFiddler-GUI-Windows.exe`
-   - **macOS**: `GCodeFiddler-GUI-macOS.zip` (extract and run the .app)
-   - **Linux**: `GCodeFiddler-GUI-Linux`
+   - **Windows**: [`GCodeFiddler-GUI-Windows.exe`](https://github.com/3DTek-xyz/GCode-Fiddler-Releases/releases/latest/download/GCodeFiddler-GUI-Windows.exe)
+   - **macOS**: [`GCodeFiddler-GUI-macOS.zip`](https://github.com/3DTek-xyz/GCode-Fiddler-Releases/releases/latest/download/GCodeFiddler-GUI-macOS.zip) (extract and run the .app)
+   - **Linux**: [`GCodeFiddler-GUI-Linux`](https://github.com/3DTek-xyz/GCode-Fiddler-Releases/releases/latest/download/GCodeFiddler-GUI-Linux)
 
 2. **Run** - Double-click to launch (no Python installation needed!)
 3. **Load** your G-code file using File → Open
@@ -30,9 +44,9 @@ GCode-Fiddler is a professional-grade tool for optimizing CNC machining operatio
 
 ### Command Line Version
 1. **Download** the CLI executable:
-   - **Windows**: `GCodeFiddler-CLI-Windows.exe`
-   - **macOS**: `GCodeFiddler-CLI-macOS`
-   - **Linux**: `GCodeFiddler-CLI-Linux`
+   - **Windows**: [`GCodeFiddler-CLI-Windows.exe`](https://github.com/3DTek-xyz/GCode-Fiddler-Releases/releases/latest/download/GCodeFiddler-CLI-Windows.exe)
+   - **macOS**: [`GCodeFiddler-CLI-macOS`](https://github.com/3DTek-xyz/GCode-Fiddler-Releases/releases/latest/download/GCodeFiddler-CLI-macOS)
+   - **Linux**: [`GCodeFiddler-CLI-Linux`](https://github.com/3DTek-xyz/GCode-Fiddler-Releases/releases/latest/download/GCodeFiddler-CLI-Linux)
 
 2. **Run** from terminal:
 ```bash
