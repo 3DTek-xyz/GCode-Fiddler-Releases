@@ -43,6 +43,11 @@ GCode-Fiddler is a professional-grade tool for optimizing CNC machining operatio
 > **📋 macOS Users**: When opening the app for the first time, macOS may show a security warning. To run the app:
 > 1. **Right-click** on `GCodeFiddler.app` and select **"Open"**
 > 2. In the security dialog, click **"Open"** to confirm
+> 
+> **⚠️ If you see "damaged and can't be opened":**
+> 1. Open **Terminal** and run: `xattr -d com.apple.quarantine ~/Downloads/GCodeFiddler.app`
+> 2. Then try right-clicking → **"Open"** again
+> 3. This removes download quarantine flags that can cause the "damaged" error
 
 ### Command Line Version
 1. **Download** the CLI executable:
