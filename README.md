@@ -190,12 +190,79 @@ The optimizer processes G-code files through several stages:
 4. **Validation**: Ensures dimensional accuracy with endpoint validation
 5. **Export**: Saves the optimized G-code with improvements
 
-## 📚 Documentation
+## 📚 Command Line Reference
 
-- [User Guide](docs/USER_GUIDE.md) - Detailed usage instructions
-- [Command Line Reference](docs/CLI_REFERENCE.md) - Complete CLI documentation
-- [Troubleshooting](docs/TROUBLESHOOTING.md) - Common issues and solutions
-- [FAQ](docs/FAQ.md) - Frequently asked questions
+### Basic Usage
+
+```bash
+# Analyze G-code file only (no modifications)
+GCodeFiddlerCLI input.gcode --analyze-only
+
+# Optimize G-code file with default settings
+GCodeFiddlerCLI input.gcode
+
+# Optimize with custom output file
+GCodeFiddlerCLI input.gcode -o optimized_output.gcode
+```
+
+### Advanced Options
+
+```bash
+# Corner smoothing optimization
+GCodeFiddlerCLI input.gcode --corner-smoothing --corner-angle 45 --corner-speed 2000
+
+# Custom feed rate and speed limits
+GCodeFiddlerCLI input.gcode --feed-rate 2500 --max-speed 4000
+
+# Endpoint validation for accuracy verification
+GCodeFiddlerCLI input.gcode --corner-smoothing --validate-endpoints --validation-tolerance 0.001
+
+# Export machine configuration template
+GCodeFiddlerCLI --export-config machine_template.xml
+
+# Check for software updates
+GCodeFiddlerCLI --check-updates
+```
+
+### Complete Parameter Reference
+
+| Parameter | Type | Description | Default |
+|-----------|------|-------------|---------|
+| `input_file` | path | Input G-code file (required) | - |
+| `-o, --output` | path | Output file path | `input_optimized.gcode` |
+| `--feed-rate` | float | Override feed rate (mm/min) | - |
+| `--max-speed` | float | Maximum speed limit (mm/min) | - |
+| `--analyze-only` | flag | Only analyze, don't modify | false |
+| `--config` | path | Custom machine configuration file | - |
+| `--corner-smoothing` | flag | Enable corner smoothing | false |
+| `--corner-speed` | float | Speed for corners (mm/min) | 2000.0 |
+| `--corner-angle` | float | Corner angle threshold (degrees) | 45.0 |
+| `--approach-distance` | float | Approach distance for corners (mm) | 20.0 |
+| `--validate-endpoints` | flag | Validate endpoint preservation | false |
+| `--validation-tolerance` | float | Tolerance for validation (mm) | 0.001 |
+| `--export-config` | path | Export configuration template | - |
+| `--check-updates` | flag | Check for updates and exit | false |
+| `--version` | flag | Show version information | - |
+
+### Configuration File Format
+
+Export a template configuration file:
+```bash
+GCodeFiddlerCLI --export-config machine_config.xml
+```
+
+Example configuration structure:
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<machine_config>
+    <max_rapid_speed>5000</max_rapid_speed>
+    <max_cut_speed>2000</max_cut_speed>
+    <max_x_travel>300</max_x_travel>
+    <max_y_travel>300</max_y_travel>
+    <max_z_travel>100</max_z_travel>
+    <max_spindle_speed>24000</max_spindle_speed>
+</machine_config>
+```
 
 ## 🛣️ Roadmap
 
