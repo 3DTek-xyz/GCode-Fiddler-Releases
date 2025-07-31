@@ -1,41 +1,21 @@
-<div align="center">
-  <img src="gcode_fiddler_logo_200.png" alt="GCode Fiddler Logo" width="200"/>
-  
-  # GCode-Fiddler
-  
-  **Advanced CNC G-code Feed Rate Optimizer**
-  
-  GCode-Fiddler is a professional-grade tool for optimizing CNC machining operations by intelligently adjusting feed rates at corners, arc transitions, and critical path points. Designed for machinists, CNC operators, and manufacturing professionals who demand precision and efficiency.
-</div>
+# GCode-Fiddler
+
+**Advanced CNC G-code Feed Rate Optimizer**
+
+GCode-Fiddler is a professional-grade tool for optimizing CNC machining operations by intelligently adjusting feed rates at corners, arc transitions, and critical path points. Designed for machinists, CNC operators, and manufacturing professionals who demand precision and efficiency.
 
 ## 🚀 Quick Start (No Installation Required)
 
 [![Latest Release](https://img.shields.io/github/v/release/3DTek-xyz/GCode-Fiddler-Releases?label=Latest%20Release)](https://github.com/3DTek-xyz/GCode-Fiddler-Releases/releases/latest)
 [![Downloads](https://img.shields.io/github/downloads/3DTek-xyz/GCode-Fiddler-Releases/total)](https://github.com/3DTek-xyz/GCode-Fiddler-Releases/releases)
 
-### 📥 Direct Downloads (Always Latest Version)
-
-**GUI Version (Recommended)**
-<br>
-[![Windows GUI](https://img.shields.io/badge/Windows-GUI-blue?style=for-the-badge&logo=windows)](https://github.com/3DTek-xyz/GCode-Fiddler-Releases/releases/latest/download/GCodeFiddler-GUI-Windows.exe)
-[![macOS GUI](https://img.shields.io/badge/macOS-GUI-black?style=for-the-badge&logo=apple)](https://github.com/3DTek-xyz/GCode-Fiddler-Releases/releases/latest/download/GCodeFiddler-GUI-macOS.zip)
-[![Linux GUI](https://img.shields.io/badge/Linux-GUI-orange?style=for-the-badge&logo=linux)](https://github.com/3DTek-xyz/GCode-Fiddler-Releases/releases/latest/download/GCodeFiddler-GUI-Linux)
-
-**Command Line Interface**
-<br>
-[![Windows CLI](https://img.shields.io/badge/Windows-CLI-lightblue?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/3DTek-xyz/GCode-Fiddler-Releases/releases/latest/download/GCodeFiddler-CLI-Windows.exe)
-[![macOS CLI](https://img.shields.io/badge/macOS-CLI-gray?style=for-the-badge&logo=apple&logoColor=white)](https://github.com/3DTek-xyz/GCode-Fiddler-Releases/releases/latest/download/GCodeFiddler-CLI-macOS)
-[![Linux CLI](https://img.shields.io/badge/Linux-CLI-yellow?style=for-the-badge&logo=linux&logoColor=black)](https://github.com/3DTek-xyz/GCode-Fiddler-Releases/releases/latest/download/GCodeFiddler-CLI-Linux)
-
-> 💡 **These links automatically download the latest version** - no need to browse releases!
-> 
-> 📋 **Need an older version?** Browse all releases: [All Versions](https://github.com/3DTek-xyz/GCode-Fiddler-Releases/releases)
+**[➤ Download Latest Release](https://github.com/3DTek-xyz/GCode-Fiddler-Releases/releases/latest)**
 
 ### GUI Version (Recommended for most users)
 1. **Download** the appropriate executable for your platform:
-   - **Windows**: [`GCodeFiddler-GUI-Windows.exe`](https://github.com/3DTek-xyz/GCode-Fiddler-Releases/releases/latest/download/GCodeFiddler-GUI-Windows.exe)
-   - **macOS**: [`GCodeFiddler-GUI-macOS.zip`](https://github.com/3DTek-xyz/GCode-Fiddler-Releases/releases/latest/download/GCodeFiddler-GUI-macOS.zip) (extract and run the .app)
-   - **Linux**: [`GCodeFiddler-GUI-Linux`](https://github.com/3DTek-xyz/GCode-Fiddler-Releases/releases/latest/download/GCodeFiddler-GUI-Linux)
+   - **Windows**: `GCodeFiddler-GUI-Windows.exe`
+   - **macOS**: `GCodeFiddler-GUI-macOS.zip` (extract and run the .app)
+   - **Linux**: `GCodeFiddler-GUI-Linux`
 
 2. **Run** - Double-click to launch (no Python installation needed!)
 3. **Load** your G-code file using File → Open
@@ -47,17 +27,12 @@
 > **📋 macOS Users**: When opening the app for the first time, macOS may show a security warning. To run the app:
 > 1. **Right-click** on `GCodeFiddler.app` and select **"Open"**
 > 2. In the security dialog, click **"Open"** to confirm
-> 
-> **⚠️ If you see "damaged and can't be opened":**
-> 1. Open **Terminal** and run: `xattr -d com.apple.quarantine ~/Downloads/GCodeFiddler.app`
-> 2. Then try right-clicking → **"Open"** again
-> 3. This removes download quarantine flags that can cause the "damaged" error
 
 ### Command Line Version
 1. **Download** the CLI executable:
-   - **Windows**: [`GCodeFiddler-CLI-Windows.exe`](https://github.com/3DTek-xyz/GCode-Fiddler-Releases/releases/latest/download/GCodeFiddler-CLI-Windows.exe)
-   - **macOS**: [`GCodeFiddler-CLI-macOS`](https://github.com/3DTek-xyz/GCode-Fiddler-Releases/releases/latest/download/GCodeFiddler-CLI-macOS)
-   - **Linux**: [`GCodeFiddler-CLI-Linux`](https://github.com/3DTek-xyz/GCode-Fiddler-Releases/releases/latest/download/GCodeFiddler-CLI-Linux)
+   - **Windows**: `GCodeFiddler-CLI-Windows.exe`
+   - **macOS**: `GCodeFiddler-CLI-macOS`
+   - **Linux**: `GCodeFiddler-CLI-Linux`
 
 2. **Run** from terminal:
 ```bash
@@ -177,28 +152,18 @@ Optimization Results:
   New average feed rate: 2100.00 mm/min
 ```
 
-## ⚙️ G-code Compatibility
+## ⚙️ Supported G-code Commands
 
-**GCode-Fiddler supports ALL standard G-code commands** - we intelligently optimize what we understand and safely pass through everything else.
-
-### Commands We Actively Optimize:
-- **G0/G1**: Linear movement commands (rapid/linear interpolation) - *feed rate optimization*
-- **G2/G3**: Circular interpolation - *arc-aware corner smoothing*
-- **Tool paths**: Multi-tool operations - *tool-specific optimization*
-
-### Commands We Preserve & Pass-Through:
-- **All G-codes**: G17/G18/G19 (plane selection), G20/G21 (units), G28/G30 (homing), G54-G59 (work coordinates), G90/G91 (positioning modes), and many more
-- **M commands**: Machine commands (spindle control, coolant, tool changes, custom macros, etc.)
-- **T commands**: Tool selection and changes
-- **Comments & Formatting**: Preserves original file structure and documentation
-- **Custom Commands**: Machine-specific or non-standard commands pass through unchanged
-
-### Safety Philosophy:
-✅ **If we don't recognize it, we preserve it exactly** - no guessing or modification
-<br>
-✅ **Only optimize movement commands we fully understand**
-<br>
-✅ **Maintain 100% compatibility with your CNC controller**
+- **G0/G1**: Linear movement commands (rapid/linear interpolation)
+- **G2/G3**: Circular interpolation
+- **G17/G18/G19**: Plane selection
+- **G20/G21**: Units (inches/millimeters)
+- **G28/G30**: Home position
+- **G54-G59**: Work coordinate systems
+- **G90/G91**: Absolute/incremental positioning
+- **M commands**: Machine commands (heating, cooling, etc.)
+- **Tool changes**: T commands for multi-tool setups
+- **Comments**: Preserves comments and file structure
 
 ## 🔒 Safety & Best Practices
 
@@ -225,79 +190,12 @@ The optimizer processes G-code files through several stages:
 4. **Validation**: Ensures dimensional accuracy with endpoint validation
 5. **Export**: Saves the optimized G-code with improvements
 
-## 📚 Command Line Reference
+## 📚 Documentation
 
-### Basic Usage
-
-```bash
-# Analyze G-code file only (no modifications)
-GCodeFiddlerCLI input.gcode --analyze-only
-
-# Optimize G-code file with default settings
-GCodeFiddlerCLI input.gcode
-
-# Optimize with custom output file
-GCodeFiddlerCLI input.gcode -o optimized_output.gcode
-```
-
-### Advanced Options
-
-```bash
-# Corner smoothing optimization
-GCodeFiddlerCLI input.gcode --corner-smoothing --corner-angle 45 --corner-speed 2000
-
-# Custom feed rate and speed limits
-GCodeFiddlerCLI input.gcode --feed-rate 2500 --max-speed 4000
-
-# Endpoint validation for accuracy verification
-GCodeFiddlerCLI input.gcode --corner-smoothing --validate-endpoints --validation-tolerance 0.001
-
-# Export machine configuration template
-GCodeFiddlerCLI --export-config machine_template.xml
-
-# Check for software updates
-GCodeFiddlerCLI --check-updates
-```
-
-### Complete Parameter Reference
-
-| Parameter | Type | Description | Default |
-|-----------|------|-------------|---------|
-| `input_file` | path | Input G-code file (required) | - |
-| `-o, --output` | path | Output file path | `input_optimized.gcode` |
-| `--feed-rate` | float | Override feed rate (mm/min) | - |
-| `--max-speed` | float | Maximum speed limit (mm/min) | - |
-| `--analyze-only` | flag | Only analyze, don't modify | false |
-| `--config` | path | Custom machine configuration file | - |
-| `--corner-smoothing` | flag | Enable corner smoothing | false |
-| `--corner-speed` | float | Speed for corners (mm/min) | 2000.0 |
-| `--corner-angle` | float | Corner angle threshold (degrees) | 45.0 |
-| `--approach-distance` | float | Approach distance for corners (mm) | 20.0 |
-| `--validate-endpoints` | flag | Validate endpoint preservation | false |
-| `--validation-tolerance` | float | Tolerance for validation (mm) | 0.001 |
-| `--export-config` | path | Export configuration template | - |
-| `--check-updates` | flag | Check for updates and exit | false |
-| `--version` | flag | Show version information | - |
-
-### Configuration File Format
-
-Export a template configuration file:
-```bash
-GCodeFiddlerCLI --export-config machine_config.xml
-```
-
-Example configuration structure:
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<machine_config>
-    <max_rapid_speed>5000</max_rapid_speed>
-    <max_cut_speed>2000</max_cut_speed>
-    <max_x_travel>300</max_x_travel>
-    <max_y_travel>300</max_y_travel>
-    <max_z_travel>100</max_z_travel>
-    <max_spindle_speed>24000</max_spindle_speed>
-</machine_config>
-```
+- [User Guide](docs/USER_GUIDE.md) - Detailed usage instructions
+- [Command Line Reference](docs/CLI_REFERENCE.md) - Complete CLI documentation
+- [Troubleshooting](docs/TROUBLESHOOTING.md) - Common issues and solutions
+- [FAQ](docs/FAQ.md) - Frequently asked questions
 
 ## 🛣️ Roadmap
 
