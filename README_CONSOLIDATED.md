@@ -49,26 +49,23 @@ GCode-Fiddler is a professional-grade tool for optimizing CNC machining operatio
 ## ✨ Key Features
 
 ### Core Optimization
-- **Intelligent Corner Detection**: Automatically identifies sharp corners and arc transitions
-- **Feed Rate Optimization**: Reduces vibration and tool wear through smart speed control
-- **Arc-Aware Processing**: Proper handling of G2/G3 arc commands with tangent calculations
-- **Corner Smoothing**: Configurable angle threshold for optimized toolpaths
-- **Travel Move Optimization**: Optimize non-cutting moves for speed
-- **Professional Validation**: Endpoint validation ensures dimensional accuracy
+- **Corner Smoothing**: Configurable angle detection and speed reduction for sharp direction changes
+- **Helical Entry Slowdown**: Intelligent speed control for circular/helical machining operations
+- **Feed Rate Override**: Set specific feed rates for consistent speeds
+- **Speed Limiting**: Maximum speed constraints for safety
+- **Endpoint Validation**: Ensures dimensional accuracy is preserved after optimization
 
-### Visualization & Analysis
-- **3D Visualization**: Interactive toolpath preview with grid toggle
-- **Real-time Preview**: See optimizations before processing
-- **Visual Feedback**: Orange highlighting for slowdown sections
-- **G-code Comparison View**: Side-by-side analysis of original vs optimized G-code
-- **Toolpath Analysis**: Advanced analysis to identify and separate individual machining operations
-- **Detailed Statistics**: Get comprehensive analysis of your G-code files
+### Analysis & Visualization
+- **Basic Visualization**: 2D toolpath preview with optimization highlighting
+- **File Statistics**: Analysis of total lines, movement commands, and estimated times
+- **G-code Comparison**: View original vs optimized G-code side-by-side
+- **Real-time Feedback**: Progress updates during optimization processing
 
 ### User Interface
-- **Drag & Drop**: Easy file loading (.nc, .gcode, .cnc)
-- **Simple GUI Interface**: Easy file selection with real-time progress
+- **Simple GUI**: Easy file loading with drag & drop support (.nc, .gcode, .cnc)
+- **Command Line Interface**: Full CLI support for automation workflows
 - **Cross-Platform**: Available for Windows, macOS, and Linux
-- **No Dependencies**: Standalone executables require no additional software
+- **Standalone Executables**: No additional software installation required
 
 ## 🔧 System Requirements
 
@@ -79,19 +76,20 @@ GCode-Fiddler is a professional-grade tool for optimizing CNC machining operatio
 ## 📋 Optimization Parameters
 
 ### Corner Smoothing
-- **Corner Angle Threshold**: Minimum angle (degrees) to trigger slowdown
-- **Corner Speed**: Feed rate for approaching corners (mm/min)
-- **Approach Distance**: Distance before corner to start slowing (mm)
+- **Corner Angle Threshold**: Minimum angle (degrees) to trigger slowdown (default: 45°)
+- **Corner Speed**: Feed rate for approaching corners (mm/min, default: 2000)
+- **Approach Distance**: Distance before corner to start slowing (mm, default: 20)
 
-### Arc Processing
-- **Min Arc Radius**: Radius threshold for arc speed limiting (mm)
-- **Max Arc Speed**: Maximum speed for small radius arcs (mm/min)
+### Helical Entry Slowdown
+- **Min Diameter**: Minimum diameter to trigger slowdown (mm, default: 5)
+- **Max Diameter**: Maximum diameter to apply slowdown (mm, default: 30)
+- **Min Speed**: Minimum speed for small diameter operations (mm/min, default: 2000)
+- **Max Speed**: Maximum speed for large diameter operations (mm/min, default: 4000)
 
-### Advanced Options
+### General Options
 - **Feed Rate Override**: Set specific feed rate (mm/min)
 - **Max Speed Limit**: Maximum speed limit for safety (mm/min)
-- **Toolpath Sensitivity**: Detection sensitivity (conservative, default, aggressive)
-- **Coordinate Precision**: Round coordinates to reduce file size
+- **Endpoint Validation**: Verify dimensional accuracy is preserved (tolerance in mm)
 
 ## 🛠️ Command Line Reference
 
@@ -125,12 +123,15 @@ GCode-Fiddler is a professional-grade tool for optimizing CNC machining operatio
 - `--feed-rate`: Override feed rate in mm/min
 - `--max-speed`: Maximum speed limit in mm/min
 - `--analyze-only`: Only analyze the file without making modifications
-- `--analyze-toolpaths`: Analyze and display individual toolpaths
-- `--export-toolpaths`: Export each toolpath as a separate G-code file
-- `--toolpath-sensitivity`: Toolpath detection sensitivity
-- `--corner-smoothing`: Enable corner smoothing (none, light, aggressive)
-- `--corner-speed`: Feed rate for corners (mm/min)
-- `--corner-angle`: Minimum angle threshold for corner detection (degrees)
+- `--corner-smoothing`: Enable corner smoothing optimization
+- `--corner-speed`: Feed rate for corners (mm/min, default: 2000)
+- `--corner-angle`: Minimum angle threshold for corner detection (degrees, default: 45)
+- `--approach-distance`: Approach distance for corners (mm, default: 20)
+- `--validate-endpoints`: Validate that endpoints are preserved after optimization
+- `--validation-tolerance`: Tolerance for endpoint validation (mm, default: 0.001)
+- `--export-config`: Export machine configuration template to specified file
+- `--check-updates`: Check for software updates and exit
+- `--version`: Show version information
 
 ## 📊 Example Output
 
@@ -154,16 +155,16 @@ Optimization Results:
 
 ## ⚙️ Supported G-code Commands
 
-- **G0/G1**: Linear movement commands (rapid/linear interpolation)
-- **G2/G3**: Circular interpolation
-- **G17/G18/G19**: Plane selection
-- **G20/G21**: Units (inches/millimeters)
-- **G28/G30**: Home position
-- **G54-G59**: Work coordinate systems
-- **G90/G91**: Absolute/incremental positioning
-- **M commands**: Machine commands (heating, cooling, etc.)
-- **Tool changes**: T commands for multi-tool setups
-- **Comments**: Preserves comments and file structure
+- **G0/G1**: Linear movement commands - *corner smoothing and feed rate optimization*
+- **G2/G3**: Circular interpolation - *helical entry slowdown for tight spirals*
+- **G17/G18/G19**: Plane selection (preserved)
+- **G20/G21**: Units (inches/millimeters) (preserved)
+- **G28/G30**: Home position (preserved)
+- **G54-G59**: Work coordinate systems (preserved)
+- **G90/G91**: Absolute/incremental positioning (preserved)
+- **M commands**: Machine commands (heating, cooling, etc.) (preserved)
+- **Tool changes**: T commands for multi-tool setups (preserved)
+- **Comments**: Preserves comments and file structure (preserved)
 
 ## 🔒 Safety & Best Practices
 
@@ -181,14 +182,14 @@ Optimization Results:
 The optimizer processes G-code files through several stages:
 
 1. **Parsing**: Reads and parses each line of the G-code file
-2. **Analysis**: Calculates statistics like print time, distances, and feed rates
-3. **Optimization**: Applies various optimization techniques:
-   - Optimizes feed rates for travel vs. cutting moves
-   - Applies speed limits for safety
-   - Rounds coordinates to reduce file size
-   - Implements corner smoothing and arc processing
-4. **Validation**: Ensures dimensional accuracy with endpoint validation
-5. **Export**: Saves the optimized G-code with improvements
+2. **Analysis**: Calculates statistics like estimated time, total movements, and feed rates
+3. **Optimization**: Applies selected optimization techniques:
+   - Corner smoothing for sharp direction changes
+   - Helical entry slowdown for circular/spiral operations
+   - Feed rate overrides for consistent speeds
+   - Speed limiting for safety constraints
+4. **Validation**: Optional endpoint validation ensures dimensional accuracy is preserved
+5. **Export**: Saves the optimized G-code with improvements applied
 
 ## 📚 Documentation
 

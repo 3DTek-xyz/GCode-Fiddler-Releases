@@ -2,7 +2,7 @@
 
 ## Overview
 
-GCode-Fiddler optimizes CNC G-code files by intelligently adjusting feed rates at critical points such as corners and arc transitions, reducing machine vibration and improving surface finish quality.
+GCode-Fiddler optimizes CNC G-code files by intelligently adjusting feed rates for corner smoothing and helical entry operations, helping to reduce machine vibration and improve surface finish quality.
 
 ## Getting Started
 
@@ -18,34 +18,46 @@ GCode-Fiddler optimizes CNC G-code files by intelligently adjusting feed rates a
 
 1. **Launch** GCode-Fiddler
 2. **File → Open** to load your G-code file
-3. **View** the original toolpath in the preview window
-4. **Optimize** using the toolbar button or menu
-5. **Compare** original vs optimized using the comparison view
-6. **Save** the optimized G-code
+3. **View** the toolpath in the preview window
+4. **Configure** optimization parameters in the Quick Options section
+5. **Enable** Corner Smoothing and/or Helical Entry Slowdown as needed
+6. **Optimize** using the optimize button
+7. **Review** the results in the comparison view
+8. **Save** the optimized G-code
 
 #### Command Line Mode
 
 ```bash
-# Basic optimization
-./gcode-fiddler input.nc
+# Basic optimization with corner smoothing
+./GCodeFiddler-CLI input.nc --corner-smoothing
 
 # With custom parameters
-./gcode-fiddler input.nc --corner-smoothing --corner-speed 1500 --corner-angle 25
+./GCodeFiddler-CLI input.nc --corner-smoothing --corner-speed 1500 --corner-angle 25
 
 # Analysis only (no modifications)
-./gcode-fiddler input.nc --analyze-only
+./GCodeFiddler-CLI input.nc --analyze-only
+
+# With endpoint validation
+./GCodeFiddler-CLI input.nc --corner-smoothing --validate-endpoints
 ```
 
 ## Optimization Parameters
 
 ### Corner Smoothing
-- **Corner Angle Threshold**: Minimum angle (degrees) to trigger slowdown
-- **Corner Speed**: Feed rate for approaching corners (mm/min)
-- **Approach Distance**: Distance before corner to start slowing (mm)
+- **Corner Angle Threshold**: Minimum angle (degrees) to trigger slowdown (default: 45°)
+- **Corner Speed**: Feed rate for approaching corners (mm/min, default: 2000)
+- **Approach Distance**: Distance before corner to start slowing (mm, default: 20)
 
-### Arc Processing
-- **Min Arc Radius**: Radius threshold for arc speed limiting (mm)
-- **Max Arc Speed**: Maximum speed for small radius arcs (mm/min)
+### Helical Entry Slowdown
+- **Min Diameter**: Minimum diameter to trigger slowdown (mm, default: 5)
+- **Max Diameter**: Maximum diameter to apply slowdown (mm, default: 30)
+- **Min Speed**: Minimum speed for small diameter operations (mm/min, default: 2000)
+- **Max Speed**: Maximum speed for large diameter operations (mm/min, default: 4000)
+
+### General Options
+- **Feed Rate Override**: Set specific feed rate (mm/min)
+- **Max Speed Limit**: Maximum speed limit for safety (mm/min)
+- **Endpoint Validation**: Verify dimensional accuracy is preserved (tolerance in mm)
 
 ## Best Practices
 
@@ -54,6 +66,20 @@ GCode-Fiddler optimizes CNC G-code files by intelligently adjusting feed rates a
 3. **Start with conservative settings** and adjust based on results
 4. **Back up original files** before optimization
 5. **Test on simple parts** before production runs
+
+## Understanding the Features
+
+### Corner Smoothing
+Detects sharp direction changes in linear G-code moves and applies speed reduction in the approach zone. Most effective for:
+- Sharp 90° corners
+- Acute angle changes
+- Direction reversals
+
+### Helical Entry Slowdown
+Identifies circular/spiral machining operations (like helical ramp entries) and applies appropriate speed control based on diameter. Most effective for:
+- Helical tool entries
+- Small diameter boring operations
+- Spiral roughing operations
 
 ## Troubleshooting
 
